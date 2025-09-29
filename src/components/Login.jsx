@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../styles/autenticacao.css";
 import piggyLogo from "../assets/piggy.png";
+import Home from "./Home";
 
 import { useNavigate } from "react-router-dom";
 
@@ -14,7 +15,7 @@ const Login = ({ gotoRegister }) => {
         e.preventDefault();
         if (email === "murilo@gmail.com" && senha === "123") {
             alert("Login realizado com sucesso!");
-            navigate("/slot");
+            navigate("/home");
         } else {
             alert("Erro: Email ou senha incorretos!");
         }
