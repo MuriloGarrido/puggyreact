@@ -1,0 +1,61 @@
+ body {
+     margin: 0;
+     height: 100vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #f8f9fa;
+     perspective: 1000px;
+ }
+
+ .flip-container {
+     position: relative;
+     width: 400px;
+     
+ }
+
+ .flipper {
+     transition: transform 0.8s;
+     transform-style: preserve-3d;
+     position: relative;
+ }
+
+ .flip-container.flipped .flipper {
+     transform: rotateY(180deg);
+ }
+
+ .card {
+     backface-visibility: hidden;
+     border-radius: 12px;
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+     background-color: #fff;
+     padding: 20px;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+ }
+
+ .card.register {
+     transform: rotateY(180deg);
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+ }
+
+ .card img {
+     width: 80px;
+     margin-bottom: 15px;
+ }
+
+ .card h2 {
+     margin-bottom: 20px;
+ }
+
+ .card form {
+     width: 100%;
+ }
+
+ .card form .form-group {
+     margin-bottom: 15px;
+ }
