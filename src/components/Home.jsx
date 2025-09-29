@@ -51,9 +51,9 @@ export default function Index() {
             <span className="menu-icon">🎰</span>
             Roleta
           </button>
-          <button className="menu-item" onClick={() => selecionarMenu('loja')}>
+          <button className="menu-item" onClick={() => navigate('/GuardaRoupa')}>
             <span className="menu-icon">👕</span>
-            Loja
+            Guarda Roupa
           </button>
         </div>
 
