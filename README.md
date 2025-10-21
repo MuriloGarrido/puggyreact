@@ -1,3 +1,32 @@
+# PiggyUp - Educação Financeira  
+
+## Descrição  
+A PiggyUp é uma aplicação web voltada à educação financeira de jovens, desenvolvida com o objetivo de promover o aprendizado de forma interativa e lúdica. A plataforma baseia-se em um sistema de perguntas e respostas sobre temas relacionados a finanças pessoais, permitindo que os usuários ampliem seus conhecimentos de maneira dinâmica.
+
+Para tornar a experiência mais envolvente, a PiggyUp incorpora elementos de gamificação, como uma roleta de recompensas e um guarda-roupa virtual, onde os participantes podem personalizar seus personagens conforme progridem no jogo. Assim, a aplicação busca unir entretenimento e aprendizado, estimulando o interesse dos jovens pela educação financeira de forma prática e divertida.  
+
+## Estrutura do Projeto  
+
+## Descrição das Telas e Funcionalidades
+
+- **Home**  
+  Contém um **menu lateral** para navegar entre as páginas, um **seletor de fase** para escolher os níveis de aprendizado e uma área para exibir a **carteira de pontos do usuário**.
+
+- **Roleta**  
+  Página que apresenta um **caça-níquel** interativo onde o usuário pode apostar pontos ou moedas do jogo.
+
+- **Guarda-roupa**  
+  Tela para **personalizar o porquinho** do usuário, permitindo trocar roupas, cores e acessórios.
+
+- **Login**  
+  Página para que o usuário **faça login** no sistema e acesse suas informações e progresso.
+
+- **Quiz**  
+  Página com perguntas de **educação financeira**, onde o usuário responde questões e recebe pontuação conforme acertos.
+
+## Instalação e execução
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
