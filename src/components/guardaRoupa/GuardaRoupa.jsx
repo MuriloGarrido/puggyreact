@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Porquinho from "./Porquinho";
 import Chapeus from "./Chapeus";
-import "../styles/guardaRoupa.css";
-import musica from "../assets/Musica.mp3";
-import semChapeu from "../assets/Sem_Chapeu.png";
-import militar from "../assets/Militar.png";
-import detetive from "../assets/Detetive.png";
-import chaves from "../assets/Chaves.png";
+import "../../styles/style.css";
+import musica from "../../assets/Musica.mp3";
+import semChapeu from "../../assets/Sem_Chapeu.png";
+import militar from "../../assets/Militar.png";
+import detetive from "../../assets/Detetive.png";
+import chaves from "../../assets/Chaves.png";
 
 
 

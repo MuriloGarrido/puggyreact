@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/home.css';
+import '../styles/style.css';
 import SlotMachine from './SlotMachine';
 import { useNavigate } from "react-router-dom";
 

@@ -1,4 +1,4 @@
-import "../styles/guardaRoupa.css";
+import "../../styles/style.css";
 
 export default function Chapeus({ hats, purchasedHats, onSelect }) {
   return (

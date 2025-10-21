@@ -1,5 +1,5 @@
-import porquinho from "../assets/porquinho.png";
-import "../styles/guardaRoupa.css";
+import porquinho from "../../assets/porquinho.png";
+import "../../styles/style.css";
 
 export default function Porquinho({ currentHat }) {
   return (

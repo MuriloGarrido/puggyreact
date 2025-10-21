@@ -1,11 +1,11 @@
 import logo from './logo.svg';
-import './App.css';
+import '../src/styles/style.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Autenticacao from "./components/Autenticacao";
 import SlotMachine from "./components/SlotMachine";
 import Home from "./components/Home";
 import Quiz from "./components/Quiz";
-import GuardaRoupa from "./components/GuardaRoupa";
+import GuardaRoupa from "./components/guardaRoupa/GuardaRoupa";
 
 
 

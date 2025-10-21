@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/autenticacao.css";
+import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
 
 const Register = ({ gotoLogin }) => {

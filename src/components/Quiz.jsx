@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import '../styles/quiz.css';
+import '../styles/style.css';
 
 export default function Quiz() {
   const [perguntaAtual, setPerguntaAtual] = useState(0);

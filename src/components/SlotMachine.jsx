@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/roleta.css";
+import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
 
 const symbolsDict = ["🍒","🍋","🍊","🍇","🍉","⭐","🔔","💎","7️⃣"];
