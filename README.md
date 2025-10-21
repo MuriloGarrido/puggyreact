@@ -7,6 +7,25 @@ Para tornar a experiência mais envolvente, a PiggyUp incorpora elementos de gam
 
 ## Estrutura do Projeto  
 
+Todos os elementos principais do projeto estão localizados na pasta src, presente no diretório raiz da aplicação. A estrutura dessa pasta é a seguinte:  
+
+assets/ # Contém imagens e recursos estáticos do projeto  
+components/guardaRoupa/Chapeus/ # Componente auxiliar da personalização do porquinho, responsável pela alteração dos chapéus    
+components/guardaRoupa/GuardaRoupa/ # Página principal dedicada à personalização do personagem (porquinho)  
+components/guardaRoupa/Porquinho/ # Componente que representa visualmente o personagem do porquinho, integrando as personalizações aplicadas
+
+
+components/Autenticacao/ # Página inicial com menu lateral, seletor de fase e carteira  
+components/Home/ # Página inicial com menu lateral, seletor de fase e carteira  
+components/Index/ # Página inicial (landing page)  
+components/Login/ # Tela de login para acessar o sistema  
+components/Quiz/ # Quiz de perguntas sobre educação financeira  
+components/Roleta/ # Página da roleta/caca-níquel para apostas  
+
+
+Cada pasta de página contém seus respectivos arquivos **HTML, CSS e JS**, exceto a pasta `assets` que contém apenas imagens.
+
+---
 ## Descrição das Telas e Funcionalidades
 
 - **Home**  
@@ -25,75 +44,32 @@ Para tornar a experiência mais envolvente, a PiggyUp incorpora elementos de gam
   Página com perguntas de **educação financeira**, onde o usuário responde questões e recebe pontuação conforme acertos.
 
 ## Instalação e execução
+A aplicação PiggyUp foi desenvolvida utilizando o framework React.js, tendo como base as linguagens HTML, CSS e JavaScript. Para o gerenciamento de dependências e execução do ambiente de desenvolvimento, é utilizado o Node.js com o gerenciador de pacotes npm.  
+
+**1 - Requisitos**  
+Antes de iniciar, verifique se possui as seguintes ferramentas instaladas em seu computador:
+Node.js (versão LTS recomendada)
+npm (instalado automaticamente junto com o Node.js)
+Git (para clonar o repositório)
+A instalação do Node.js pode ser realizada através do site oficial: https://nodejs.org  
+
+**2 - Clonar o repositório**
+Acesse o link do projeto no GitHub e utilize o comando abaixo para clonar o repositório em seu ambiente local:  
+git clone https://github.com/MaBonfim/PiggyUp.git  
+
+**3 - Acessar o diretório do projeto**
+Acesse o diretório do projeto:  
+cd puggyreact  
+
+**4 - Instalar as dependências**  
+Com o terminal aberto na pasta do projeto, execute o comando abaixo para instalar todas as dependências necessárias:  
+npm install  
+
+**5 - Executar a aplicação**  
+Após a instalação das dependências, inicie o servidor de desenvolvimento com o comando:  
+npm start  
+
+O React iniciará automaticamente a aplicação, que poderá ser acessada no navegador por meio do endereço:
+http://localhost:3000  
 
 
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
