@@ -3,7 +3,7 @@ import '../src/styles/style.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Autenticacao from "./components/Autenticacao";
 import SlotMachine from "./components/SlotMachine";
-import Home from "./components/Home";
+import Home from "./components/telaInicial/Home";
 import Quiz from "./components/Quiz";
 import GuardaRoupa from "./components/guardaRoupa/GuardaRoupa";
 

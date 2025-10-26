@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
-import Home from "./Home";
+import Home from "./telaInicial/Home";
 
 import { useNavigate } from "react-router-dom";
 
