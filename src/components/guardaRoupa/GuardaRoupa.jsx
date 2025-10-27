@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Porquinho from "./Porquinho";
 import Chapeus from "./Chapeus";
 import "../../styles/style.css";
@@ -7,33 +7,95 @@ import semChapeu from "../../assets/Sem_Chapeu.png";
 import militar from "../../assets/Militar.png";
 import detetive from "../../assets/Detetive.png";
 import chaves from "../../assets/Chaves.png";
-
-
+import axios from "axios";
 
 export default function GuardaRoupa() {
-  const [saldo, setSaldo] = useState(100);
-  const [purchasedHats, setPurchasedHats] = useState([semChapeu]);
-  const [currentHat, setCurrentHat] = useState(semChapeu);
+  const [saldo, setSaldo] = useState(0);
+  const [hats, setHats] = useState([]);
+  const [purchasedHats, setPurchasedHats] = useState(["semChapeu"]);
+  const [currentHat, setCurrentHat] = useState("semChapeu");
+  const token = localStorage.getItem("token");
+  console.log(token)
 
-  const hats = [
-    { name: "Sem Chapéu", file: semChapeu, price: 0 },
-    { name: "Militar", file: militar, price: 50 },
-    { name: "Detetive", file: detetive, price: 30 },
-    { name: "Chaves", file: chaves, price: 20 },
-  ];
+  // Mapa de aliases → imagens
+  const imagens = {
+    semChapeu,
+    militar,
+    detetive,
+    chaves,
+  };
 
-  function buyOrSelectHat(hat) {
-    if (purchasedHats.includes(hat.file)) {
-      setCurrentHat(hat.file);
-    } else {
-      if (saldo >= hat.price) {
-        setSaldo(saldo - hat.price);
-        setPurchasedHats([...purchasedHats, hat.file]);
-        setCurrentHat(hat.file);
-        alert("Chapéu comprado!");
-      } else {
-        alert("Saldo insuficiente!");
+  const atualizarSaldo = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/carteira", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setSaldo(response.data.saldo);
+      return response.data.saldo; // retorna o saldo para usar imediatamente
+    } catch (error) {
+      alert(error.response?.data?.detail || "Erro ao buscar saldo");
+      return saldo; // retorna o saldo atual caso haja erro
+    }
+  };
+
+
+
+  const obterTodosChapeus = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/vestuario", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      // Armazena o alias (arquivo) e o nome/valor como vem da API
+      setHats(response.data.vestuarios);
+    } catch (error) {
+      alert(error.response?.data?.detail || "Erro ao buscar chapéus");
+    }
+  };
+
+  
+  const obterChapeus = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/vestuario/comprados", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setPurchasedHats(response.data.vestuarios);
+    } catch (error) {
+      alert(error.response?.data?.detail || "Erro ao buscar chapéus");
+    }
+  };
+
+  useEffect(() => {
+    atualizarSaldo();
+    obterTodosChapeus();
+    obterChapeus();
+  }, []);
+
+  async function buyOrSelectHat(hat) {
+    if (purchasedHats.some(item => item.id_vestuario === hat.id)) {
+      // Já comprado
+      setCurrentHat(hat.arquivo);
+    }else {
+      try {
+        const response = await axios.post(
+          "http://127.0.0.1:8000/vestuario",
+          { id_vestuario: hat.id }, 
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if(response.data.status == "Compra bem sucedida"){
+          const novoSaldo = await atualizarSaldo();
+          obterChapeus();
+          setCurrentHat(hat.arquivo);
+        }
+        
+        alert(response.data.status)
+
+      } catch (error) {
+        alert(error.response?.data?.detail || "Erro ao buscar chapéus");
       }
+
     }
   }
 
@@ -46,20 +108,22 @@ export default function GuardaRoupa() {
         </button>
         <h1 className="header-title">Guarda-Roupa</h1>
         <div className="saldo">
-          Saldo: R$ <span>{saldo.toFixed(2)}</span>
+          Saldo: R$ <span>{saldo}</span>
         </div>
       </header>
 
       {/* Música */}
       <audio src={musica} autoPlay loop />
 
-
-      {/* Personagem */}
-      <Porquinho currentHat={currentHat} />
+      {/* Porquinho com imagem correspondente */}
+      <Porquinho currentHat={imagens[currentHat]} />
 
       {/* Lista de Chapéus */}
       <Chapeus
-        hats={hats}
+        hats={hats.map((hat) => ({
+          ...hat,
+          file: imagens[hat.arquivo], // converte para exibir a imagem correta no componente
+        }))}
         purchasedHats={purchasedHats}
         onSelect={buyOrSelectHat}
       />
