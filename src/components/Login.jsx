@@ -28,7 +28,9 @@ const Login = ({ gotoRegister }) => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("token_expiration", expirationTime);
-      navigate("/home")
+
+      navigate("/home", { replace: true });
+
 
       
     } catch (error) {

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/style.css";
 import { useNavigate } from "react-router-dom";
 
+import api from "../../services/Api";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import FaseSeletor from "./FaseSeletor";
@@ -11,6 +12,21 @@ export default function Index() {
   const [faseAtual, setFaseAtual] = useState(1);
   const fasesMaximas = 5;
   const navigate = useNavigate();
+  const [saldo, setSaldo] = useState(0); 
+
+  useEffect(() => {
+    async function carregarCarteira() {
+      try {
+        const res = await api.get("/carteira");
+        setSaldo(res.data.saldo);
+      } catch (error) {
+        alert(error);
+        setSaldo(0);
+      }
+    }
+
+    carregarCarteira();
+  }, []); 
 
   const dadosFases = {
     1: { titulo: "Conceitos Básicos", descricao: "Poupança, necessidades e orçamento" },
@@ -49,7 +65,7 @@ export default function Index() {
           />
         </div>
 
-        <Carteira pontos={1250} />
+       <Carteira pontos={saldo} />
       </div>
     </div>
   );
