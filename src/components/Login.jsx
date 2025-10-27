@@ -2,26 +2,41 @@ import React, { useState } from "react";
 import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
 import Home from "./Home";
+import axios from "axios";
+
 
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ gotoRegister }) => {
 
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
-    const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (email === "murilo@gmail.com" && senha === "123") {
-            alert("Login realizado com sucesso!");
-            navigate("/home");
-        } else {
-            alert("Erro: Email ou senha incorretos!");
-        }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/auth/login", {
+        email,
+        senha,
+      });
+
+      const token = response.data.token;
+      const expiresIn = response.data.expires_in * 1000; //ms
+      const expirationTime = new Date().getTime() + expiresIn;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("token_expiration", expirationTime);
+      navigate("/home")
+
+      
+    } catch (error) {
+      alert(error.response.data.detail);
     }
+  };
 
-      return (
+  return (
     <div className="card login text-center">
       <img src={piggyLogo} alt="logo do porquinho" />
       <h2>Login</h2>

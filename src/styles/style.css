@@ -64,7 +64,6 @@
 #root {
     font-family: Arial, sans-serif;
     text-align: center;
-    background: #fce4ec;
     padding: 20px;
     min-height: 100vh; /* garante que o fundo rosa cubra toda a tela */
     box-sizing: border-box;

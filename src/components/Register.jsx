@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
+import axios from "axios";
+
 
 const Register = ({ gotoLogin }) => {
   const [nome, setNome] = useState("");
@@ -8,7 +10,7 @@ const Register = ({ gotoLogin }) => {
   const [senha, setSenha] = useState("");
   const [confirmar, setConfirmar] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (senha !== confirmar) {
@@ -16,8 +18,21 @@ const Register = ({ gotoLogin }) => {
       return;
     }
 
-    alert(`Registrado com sucesso: ${nome}`);
-    gotoLogin();
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/auth/registrar", {
+        username: nome,
+        email: email,
+        senha: senha,
+      });
+
+      alert("Registrado com sucesso!")
+      gotoLogin();
+    
+    } catch (error) {
+      alert(error.response.data.detail);
+    }
+
   };
 
   return (

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import '../styles/style.css';
 import SlotMachine from './SlotMachine';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 export default function Index() {
   const [faseAtual, setFaseAtual] = useState(1);
+  const [saldo, setSaldo] = useState(0);
   const fasesMaximas = 5;
   const navigate = useNavigate();
 
@@ -15,6 +17,24 @@ export default function Index() {
     4: { titulo: "Investimentos Básicos", descricao: "Como fazer o dinheiro crescer" },
     5: { titulo: "Empreendedorismo Jovem", descricao: "Criar valor e ganhar dinheiro" }
   };
+
+    useEffect(() => {
+    const fetchSaldo = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get("http://127.0.0.1:8000/carteira", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setSaldo(response.data.saldo);
+      } catch (error) {
+        console.error("Erro ao buscar saldo:", error);
+      }
+    };
+
+    fetchSaldo();
+  }, []);
 
   const proximaFase = () => {
     if (faseAtual < fasesMaximas) {
@@ -88,7 +108,7 @@ export default function Index() {
           <div className="display-pontos">
             <div className="label-pontos">CARTEIRA</div>
             <div className="valor-pontos">
-              1250<span className="icone-pontos">💰</span>
+              {saldo}<span className="icone-pontos">💰</span>
             </div>
           </div>
         </div>
