@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
 import axios from "axios";
-
+import api from "../services/Api";
 import Home from "./telaInicial/Home";
 
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ const Login = ({ gotoRegister }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/login", {
+      const response = await api.post("auth/login", {
         email,
         senha,
       });
