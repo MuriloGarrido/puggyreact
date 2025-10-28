@@ -7,10 +7,13 @@ export default function QuizPergunta({
 }) {
   if (!pergunta || !pergunta.alternativas) return null;
 
+  // Exibe a pergunta e suas alternativas
   return (
     <div>
+      {/* Texto da pergunta */}
       <div className="texto-pergunta">{pergunta.enunciado}</div>
 
+      {/* Lista de opções */}
       <div className="opcoes">
         {pergunta.alternativas.map((opcao, indice) => (
           <div
@@ -28,4 +31,5 @@ export default function QuizPergunta({
       </div>
     </div>
   );
+
 }
