@@ -404,14 +404,15 @@ audio {
 
 /* Quiz.css */
 
+/* Centraliza a tela de resultado verticalmente na viewport */
 .container-quiz {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #228B22, #32CD32);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.25rem;
-  position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* garante que fique no meio vertical */
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #228B22, #32CD32);
+    box-sizing: border-box;
 }
 
 .header {
@@ -437,7 +438,7 @@ audio {
   background: white;
   border-radius: 1.5rem;
   padding: 2.5rem;
-  max-width: 37.5rem;
+  max-width: 80rem;
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -843,4 +844,87 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.tela-resultado {
+    max-height: 90vh; /* evita que a tela de resultado saia da viewport */
+    overflow-y: auto; /* scroll se o conteúdo for maior que a tela */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* mantém conteúdo a partir do topo do container interno */
+    align-items: center;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    max-width: 37.5rem;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Perguntas detalhadas */
+.pergunta-resultado {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #f7f7f7;
+    text-align: left;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* Lista de alternativas */
+.alternativas-resultado {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.opcao-correta {
+    background: #4caf50; /* verde para correta */
+    color: white;
+    border-color: #4caf50;
+}
+
+.opcao-incorreta {
+    background: #f44336; /* vermelho para incorreta */
+    color: white;
+    border-color: #f44336;
+}
+
+.opcao-correta-desabilitada {
+    background: #FFD700; /* amarelo para a correta quando não selecionada */
+    color: white;
+    border-color: #FFD700;
+}
+
+.status-pergunta {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    color: #FFD700; /* amarelo para destaque */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .tela-resultado {
+        padding: 2rem 1rem;
+        min-height: 70vh;
+    }
+
+    .titulo-resultado {
+        font-size: 2rem;
+    }
+
+    .pergunta-resultado {
+        padding: 0.75rem;
+    }
+
+    .opcao-correta,
+    .opcao-incorreta,
+    .opcao-correta-desabilitada {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
 

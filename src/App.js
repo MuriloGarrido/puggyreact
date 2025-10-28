@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Autenticacao from "./components/Autenticacao";
 import SlotMachine from "./components/SlotMachine";
 import Home from "./components/telaInicial/Home";
-import Quiz from "./components/Quiz";
+import Quiz from "./components/quiz/Quiz";
 import GuardaRoupa from "./components/guardaRoupa/GuardaRoupa";
 
 

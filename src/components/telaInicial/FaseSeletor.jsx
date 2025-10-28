@@ -1,19 +1,35 @@
 import React from "react";
-import DisplayFase from "./DisplayFase";
+import "../../styles/style.css";
 
-export default function FaseSeletor({ faseAtual, dadosFases, proximaFase, faseAnterior, iniciarQuiz }) {
+export default function FaseSeletor({
+  faseAtual,
+  dadosFases,
+  proximaFase,
+  faseAnterior,
+  iniciarQuiz,
+}) {
+  const fase = dadosFases[faseAtual - 1];
+
   return (
     <div className="seletor-fase">
       <div className="navegacao-fase">
-        <button className="botao-seta" onClick={faseAnterior}>‹</button>
+        <button className="botao-seta" onClick={faseAnterior} disabled={faseAtual === 1}>
+          ‹
+        </button>
 
-        <DisplayFase
-          fase={faseAtual}
-          titulo={dadosFases[faseAtual].titulo}
-          descricao={dadosFases[faseAtual].descricao}
-        />
+        <div className="display-fase">
+          <div className="numero-fase">{faseAtual}</div>
+          <div className="texto-fase">FASE</div>
+          <div className="descricao-fase">{fase.tema}</div>
+        </div>
 
-        <button className="botao-seta" onClick={proximaFase}>›</button>
+        <button
+          className="botao-seta"
+          onClick={proximaFase}
+          disabled={faseAtual === dadosFases.length}
+        >
+          ›
+        </button>
       </div>
 
       <button className="botao-iniciar" onClick={iniciarQuiz}>
