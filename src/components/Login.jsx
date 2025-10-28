@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "../styles/style.css";
 import piggyLogo from "../assets/piggy.png";
 import axios from "axios";
+import api from "../services/Api";
+import Home from "./telaInicial/Home";
+
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ gotoRegister }) => {
@@ -12,7 +15,7 @@ const Login = ({ gotoRegister }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://127.0.0.1:8000/auth/login", {
+      const response = await api.post("auth/login", {
         email,
         senha,
       });
@@ -22,7 +25,11 @@ const Login = ({ gotoRegister }) => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("token_expiration", expirationTime);
-      navigate("/home");
+
+      navigate("/home", { replace: true });
+
+
+      
     } catch (error) {
       alert(error.response?.data?.detail || "Erro ao logar");
     }
