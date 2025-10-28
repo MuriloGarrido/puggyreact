@@ -13,7 +13,6 @@ export default function Index() {
   const navigate = useNavigate();
   const [saldo, setSaldo] = useState(0); 
 
-  //mostrar o valor da carteira
   useEffect(() => {
     async function carregarCarteira() {
       try {
@@ -52,7 +51,6 @@ export default function Index() {
     if (faseAtual > 1) setFaseAtual(faseAtual - 1);
   };
 
-  //manda o id do quiz pro servidor e o inicia
   const iniciarQuiz = async () => {
     const fase = fases[faseAtual - 1];
     if (!fase) return;
@@ -69,17 +67,16 @@ export default function Index() {
     }
   };
 
-  // Estrutura principal da página do quiz
+
+
+
   return (
     <div className="container-principal">
-      {/* Cabeçalho */}
       <Header />
 
       <div className="layout">
-        {/* Menu lateral */}
         <Sidebar />
 
-        {/* Área central com o seletor de fase */}
         <div className="conteudo-principal">
           {fases.length > 0 ? (
             <FaseSeletor
@@ -90,14 +87,13 @@ export default function Index() {
               iniciarQuiz={iniciarQuiz}
             />
           ) : (
-            <p>Carregando fases...</p> // Mensagem enquanto carrega os dados
+            <p>Carregando fases...</p>
           )}
+
         </div>
 
-        {/* Exibe o saldo do usuário */}
-        <Carteira pontos={saldo} />
+       <Carteira pontos={saldo} />
       </div>
     </div>
   );
-
 }

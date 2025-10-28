@@ -18,7 +18,6 @@ export default function Quiz() {
   const [resultadoQuiz, setResultadoQuiz] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  //se deu ruim pra carregar o quiz pode voltar
   if (!quiz) {
     return (
       <div className="container-quiz">
@@ -30,14 +29,12 @@ export default function Quiz() {
     );
   }
 
-  //seleção de alternativa
   const handleSelecionarOpcao = (indiceOpcao) => {
     const novasRespostas = [...respostas];
     novasRespostas[perguntaAtual] = indiceOpcao;
     setRespostas(novasRespostas);
   };
 
-  //finaliza o quiz enviando as respostas pro servidor
   const enviarQuiz = async () => {
     setLoading(true);
     try {
@@ -57,7 +54,6 @@ export default function Quiz() {
     }
   };
 
-  //ação de próxima pergunta após responder
   const proximaPergunta = () => {
     if (perguntaAtual + 1 < quiz.perguntas.length) {
       setPerguntaAtual(perguntaAtual + 1);
@@ -66,10 +62,8 @@ export default function Quiz() {
     }
   };
 
-  //voltar a tela inicial
   const voltarInicio = () => navigate("/home");
 
-  //mostra o resultado do quiz
   if (mostrarResultado && resultadoQuiz) {
     return (
       <QuizResultado
@@ -82,24 +76,21 @@ export default function Quiz() {
 
   const pergunta = quiz.perguntas[perguntaAtual];
 
- // Estrutura principal do quiz
   return (
     <div className="container-quiz">
       <div className="caixa-quiz">
-        {/* Título e contador de perguntas */}
         <h1 className="titulo-quiz">{quiz.tema}</h1>
+
         <div className="contador-pergunta">
           Pergunta {perguntaAtual + 1} de {quiz.perguntas.length}
         </div>
 
-        {/* Componente da pergunta atual */}
         <QuizPergunta
           pergunta={pergunta}
           respostaSelecionada={respostas[perguntaAtual]}
           onSelecionar={handleSelecionarOpcao}
         />
 
-        {/* Botão de próxima ou finalizar */}
         <div className="container-botao">
           <button
             className="botao-quiz"
@@ -116,5 +107,4 @@ export default function Quiz() {
       </div>
     </div>
   );
-
 }
