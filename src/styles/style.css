@@ -7,22 +7,23 @@
      background-color: #f8f9fa;
      perspective: 1000px;
  }
- 
+
  .flip-container {
      position: relative;
      width: 400px;
+     
  }
- 
+
  .flipper {
      transition: transform 0.8s;
      transform-style: preserve-3d;
      position: relative;
  }
- 
+
  .flip-container.flipped .flipper {
      transform: rotateY(180deg);
  }
- 
+
  .card {
      backface-visibility: hidden;
      border-radius: 12px;
@@ -33,7 +34,7 @@
      flex-direction: column;
      align-items: center;
  }
- 
+
  .card.register {
      transform: rotateY(180deg);
      position: absolute;
@@ -41,23 +42,24 @@
      left: 0;
      width: 100%;
  }
- 
+
  .card img {
      width: 80px;
      margin-bottom: 15px;
  }
- 
+
  .card h2 {
      margin-bottom: 20px;
  }
- 
+
  .card form {
      width: 100%;
  }
- 
+
  .card form .form-group {
      margin-bottom: 15px;
  }
+
  /* Aplica ao container principal do React */
 #root {
     font-family: Arial, sans-serif;
@@ -926,3 +928,31 @@ code {
 }
 
 
+#ms-login-btn,
+ #microsoft_login {
+     margin-top: 20px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     background-color: #0078D4;
+     color: #fff;
+     font-weight: 600;
+     padding: 10px 20px;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     font-size: 16px;
+ }
+ 
+ #ms-login-btn:hover,
+ #microsoft_login:hover {
+     background-color: #005a9e;
+ }
+ 
+ #ms-login-btn img,
+ #microsoft_login img {
+     width: 20px;
+     height: 20px;
+ }

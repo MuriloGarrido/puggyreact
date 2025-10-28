@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../../styles/style.css";
 import { useNavigate } from "react-router-dom";
 import api from "../../services/Api";
-
-import api from "../../services/Api";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import FaseSeletor from "./FaseSeletor";
@@ -19,6 +17,7 @@ export default function Index() {
     async function carregarCarteira() {
       try {
         const res = await api.get("/carteira");
+        console.log(res.data.saldo)
         setSaldo(res.data.saldo);
       } catch (error) {
         alert(error);

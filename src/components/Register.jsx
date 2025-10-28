@@ -21,13 +21,17 @@ const Register = ({ gotoLogin }) => {
 
 
     try {
-      const response = await api.post("auth/register",{
+      const response = await api.post("auth/registrar",{
         username: nome,
         email: email,
         senha: senha,
       });
 
       alert("Registrado com sucesso!")
+      setNome("");
+      setEmail("");
+      setSenha("");
+      setConfirmar("");
       gotoLogin();
     
     } catch (error) {
