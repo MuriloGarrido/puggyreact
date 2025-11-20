@@ -12,31 +12,45 @@ export default function QuizResultado({ resultado, voltarInicio }) {
         <h2 className="titulo-resultado">{tema}</h2>
 
         <div className="pontuacao-geral">
-          {perguntasResultado.filter(p => p.acertou).length} / {perguntasResultado.length} corretas
+          {perguntasResultado.filter((p) => p.acertou).length} /{" "}
+          {perguntasResultado.length} corretas
         </div>
 
         {todas_corretas && (
-          <div className="mensagem-resultado">Parabéns! Você acertou todas as perguntas!</div>
+          <div className="mensagem-resultado">
+            Parabéns! Você acertou todas as perguntas!
+          </div>
         )}
 
         <div className="resultado-detalhado">
           {perguntasResultado.map((p, index) => (
             <div key={index} className="pergunta-resultado">
               <div className="texto-pergunta">{p.pergunta}</div>
+
               <ul className="alternativas-resultado">
-                {p.alternativas.map((alt, i) => {
+                {p.alternativas.map((alt) => {
+                  // classes baseadas no ID da alternativa
                   let classe = "opcao-normal";
-                  if (i === p.resposta_enviada && i === p.resposta_correta) classe = "opcao-correta";
-                  else if (i === p.resposta_enviada && i !== p.resposta_correta) classe = "opcao-incorreta";
-                  else if (i === p.resposta_correta) classe = "opcao-correta-desabilitada";
+
+                  const id = alt.id;
+                  const enviada = p.resposta_enviada;
+                  const correta = p.resposta_correta;
+
+                  if (id === enviada && id === correta)
+                    classe = "opcao-correta";
+                  else if (id === enviada && id !== correta)
+                    classe = "opcao-incorreta";
+                  else if (id === correta)
+                    classe = "opcao-correta-desabilitada";
 
                   return (
-                    <li key={i} className={`opcao ${classe}`}>
-                      {alt}
+                    <li key={id} className={`opcao ${classe}`}>
+                      {alt.texto}
                     </li>
                   );
                 })}
               </ul>
+
               <div className="status-pergunta">
                 {p.acertou ? "✅ Acertou" : "❌ Errou"}
               </div>

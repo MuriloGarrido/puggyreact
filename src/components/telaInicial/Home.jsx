@@ -61,6 +61,9 @@ export default function Index() {
 
       // Envia os dados via navigate
       navigate("/quiz", { state: { quizData: res.data } });
+
+      console.log("teste");
+
     } catch (error) {
       console.error("Erro ao iniciar quiz:", error);
       alert("Erro ao carregar o quiz. Tente novamente.");

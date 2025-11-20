@@ -9,11 +9,14 @@ export default function Quiz() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Dados do quiz recebidos via navigate
   const quiz = location.state?.quizData;
 
   const [perguntaAtual, setPerguntaAtual] = useState(0);
-  const [respostas, setRespostas] = useState([]);
+
+  // Agora salvamos por ID da pergunta
+  // respostas = { [pergunta_id]: alternativa_id }
+  const [respostas, setRespostas] = useState({});
+
   const [mostrarResultado, setMostrarResultado] = useState(false);
   const [resultadoQuiz, setResultadoQuiz] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -29,20 +32,31 @@ export default function Quiz() {
     );
   }
 
-  const handleSelecionarOpcao = (indiceOpcao) => {
-    const novasRespostas = [...respostas];
-    novasRespostas[perguntaAtual] = indiceOpcao;
-    setRespostas(novasRespostas);
+  // Selecionar resposta usando ID
+  const handleSelecionarOpcao = (alternativaID) => {
+    const perguntaID = quiz.perguntas[perguntaAtual].id;
+
+    setRespostas((r) => ({
+      ...r,
+      [perguntaID]: alternativaID,
+    }));
   };
 
+  // Enviar mantendo compatibilidade com o backend
   const enviarQuiz = async () => {
     setLoading(true);
     try {
+      // Converter respostas por ID → ARRAY NA ORDEM DAS PERGUNTAS
+      const respostasOrdenadas = quiz.perguntas.map((p) => {
+        return respostas[p.id] ?? null;
+      });
+
+      console.log(respostasOrdenadas)
+
       const res = await api.post("/quiz/submit", {
         quiz_id: quiz.id,
-        respostas: respostas,
+        respostas: respostasOrdenadas, // ← compatível com seu backend
       });
-      console.log("Resultado do quiz:", res.data);
 
       setResultadoQuiz(res.data);
       setMostrarResultado(true);
@@ -58,7 +72,7 @@ export default function Quiz() {
     if (perguntaAtual + 1 < quiz.perguntas.length) {
       setPerguntaAtual(perguntaAtual + 1);
     } else {
-      enviarQuiz(); // última pergunta -> envia o quiz
+      enviarQuiz();
     }
   };
 
@@ -75,6 +89,7 @@ export default function Quiz() {
   }
 
   const pergunta = quiz.perguntas[perguntaAtual];
+  const perguntaID = pergunta.id;
 
   return (
     <div className="container-quiz">
@@ -87,7 +102,7 @@ export default function Quiz() {
 
         <QuizPergunta
           pergunta={pergunta}
-          respostaSelecionada={respostas[perguntaAtual]}
+          respostaSelecionada={respostas[perguntaID]}
           onSelecionar={handleSelecionarOpcao}
         />
 
@@ -95,7 +110,7 @@ export default function Quiz() {
           <button
             className="botao-quiz"
             onClick={proximaPergunta}
-            disabled={respostas[perguntaAtual] == null || loading}
+            disabled={respostas[perguntaID] == null || loading}
           >
             {loading
               ? "ENVIANDO..."

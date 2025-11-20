@@ -12,17 +12,17 @@ export default function QuizPergunta({
       <div className="texto-pergunta">{pergunta.enunciado}</div>
 
       <div className="opcoes">
-        {pergunta.alternativas.map((opcao, indice) => (
+        {pergunta.alternativas.map((opcao) => (
           <div
-            key={indice}
+            key={opcao.id}
             className={`opcao ${
-              respostaSelecionada === indice
+              respostaSelecionada === opcao.id
                 ? "opcao-selecionada"
                 : "opcao-normal"
             }`}
-            onClick={() => onSelecionar(indice)}
+            onClick={() => onSelecionar(opcao.id)}
           >
-            {opcao}
+            {opcao.texto}
           </div>
         ))}
       </div>
