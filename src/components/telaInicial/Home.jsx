@@ -11,22 +11,36 @@ export default function Index() {
   const [faseAtual, setFaseAtual] = useState(1);
   const [fases, setFases] = useState([]);
   const navigate = useNavigate();
-  const [saldo, setSaldo] = useState(0); 
+  const [saldo, setSaldo] = useState(0);
 
   useEffect(() => {
-    async function carregarCarteira() {
-      try {
-        const res = await api.get("/carteira");
-        console.log(res.data.saldo)
-        setSaldo(res.data.saldo);
-      } catch (error) {
-        alert(error);
-        setSaldo(0);
+async function carregarCarteira() {
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await api.get("/carteira", {
+      headers: {
+        Authorization: `Bearer ${token}`
       }
-    }
+    });
+
+    
+
+    console.log(res.data.saldo);
+    setSaldo(res.data.saldo);
+
+  } catch (error) {
+    console.error("CARTEIRA ERROR:", error);
+    console.error("RESPONSE:", error.response);
+
+    alert(error.response?.data?.detail);
+    setSaldo(0);
+  }
+}
+
 
     carregarCarteira();
-  }, []); 
+  }, []);
 
   // Buscar fases da API ao montar o componente
   useEffect(() => {
@@ -95,7 +109,7 @@ export default function Index() {
 
         </div>
 
-       <Carteira pontos={saldo} />
+        <Carteira pontos={saldo} />
       </div>
     </div>
   );

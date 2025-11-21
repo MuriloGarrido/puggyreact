@@ -3,15 +3,21 @@ import { useNavigate } from "react-router-dom";
 
 // Cria uma instância do Axios
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  //baseURL: "http://127.0.0.1:8000",
+  baseURL: "https://puggyapi-production.up.railway.app",
 });
 
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
+
+  console.log("➡️ Endpoint:", config.url);
+  console.log("🔑 Token:", token);
+
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
+
   return config;
 });
 

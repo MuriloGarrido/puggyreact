@@ -7,15 +7,13 @@ import semChapeu from "../../assets/Sem_Chapeu.png";
 import militar from "../../assets/Militar.png";
 import detetive from "../../assets/Detetive.png";
 import chaves from "../../assets/Chaves.png";
-import axios from "axios";
+import api from "../../services/Api";
 
 export default function GuardaRoupa() {
   const [saldo, setSaldo] = useState(0);
   const [hats, setHats] = useState([]);
   const [purchasedHats, setPurchasedHats] = useState(["semChapeu"]);
   const [currentHat, setCurrentHat] = useState("semChapeu");
-  const token = localStorage.getItem("token");
-  console.log(token)
 
   // Mapa de aliases → imagens
   const imagens = {
@@ -27,9 +25,8 @@ export default function GuardaRoupa() {
 
   const atualizarSaldo = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/carteira", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get("/carteira")
+
       setSaldo(response.data.saldo);
       return response.data.saldo; // retorna o saldo para usar imediatamente
     } catch (error) {
@@ -42,9 +39,7 @@ export default function GuardaRoupa() {
 
   const obterTodosChapeus = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/vestuario", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get("/vestuario")
 
       // Armazena o alias (arquivo) e o nome/valor como vem da API
       setHats(response.data.vestuarios);
@@ -56,9 +51,7 @@ export default function GuardaRoupa() {
   
   const obterChapeus = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:8000/vestuario/comprados", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await api.get("/vestuario/comprados")
 
       setPurchasedHats(response.data.vestuarios);
     } catch (error) {
@@ -78,11 +71,7 @@ export default function GuardaRoupa() {
       setCurrentHat(hat.arquivo);
     }else {
       try {
-        const response = await axios.post(
-          "http://127.0.0.1:8000/vestuario",
-          { id_vestuario: hat.id }, 
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
+        const response = await api.post("/vestuario",{ id_vestuario: hat.id })
 
         if(response.data.status == "Compra bem sucedida"){
           const novoSaldo = await atualizarSaldo();
