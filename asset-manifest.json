@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/puggyreact/static/css/main.e96d6a42.css",
+    "main.js": "/puggyreact/static/js/main.534b7a86.js",
+    "static/js/453.9923e69c.chunk.js": "/puggyreact/static/js/453.9923e69c.chunk.js",
+    "static/media/Musica.mp3": "/puggyreact/static/media/Musica.e48de68740b7a36eef6f.mp3",
+    "static/media/piggy.png": "/puggyreact/static/media/piggy.e216519fe48787221408.png",
+    "static/media/porquinho.png": "/puggyreact/static/media/porquinho.4419a3d8f1dcc10516c6.png",
+    "static/media/Detetive.png": "/puggyreact/static/media/Detetive.b197397c2f6a1a48a9db.png",
+    "static/media/Chaves.png": "/puggyreact/static/media/Chaves.853d97067c36d3482653.png",
+    "static/media/Militar.png": "/puggyreact/static/media/Militar.ac703cb23f426893fc50.png",
+    "static/media/logo.svg": "/puggyreact/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/puggyreact/index.html",
+    "main.e96d6a42.css.map": "/puggyreact/static/css/main.e96d6a42.css.map",
+    "main.534b7a86.js.map": "/puggyreact/static/js/main.534b7a86.js.map",
+    "453.9923e69c.chunk.js.map": "/puggyreact/static/js/453.9923e69c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e96d6a42.css",
+    "static/js/main.534b7a86.js"
+  ]
+}
