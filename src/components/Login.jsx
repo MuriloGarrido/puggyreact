@@ -37,7 +37,7 @@ const Login = ({ gotoRegister }) => {
 
   const handleMicrosoftLogin = () => {
     // Redireciona direto para o backend, que faz o login e volta pro frontend
-    window.location.href = "http://127.0.0.1:8000/auth/microsoft";
+    window.location.href = "https://murilogarrido.github.io//auth/microsoft";
   };
 
   return (
